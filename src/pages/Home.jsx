@@ -124,14 +124,14 @@ const Home = () => {
                     <span className="shipping__icon">
                       <i className="ri-car-line"></i>
                     </span>{" "}
-                    No shipping charge
+                    No Delivery charge
                   </p>
 
                   <p className=" d-flex align-items-center gap-2 ">
                     <span className="shipping__icon">
                       <i className="ri-shield-check-line"></i>
                     </span>{" "}
-                    100% secure checkout
+                    Delivering Warmth, One Bite at a Time!
                   </p>
                 </div>
               </div>
