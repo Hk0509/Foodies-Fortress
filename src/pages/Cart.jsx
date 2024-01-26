@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { memo } from "react";
 import CommonSection from "../components/UI/common-section/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
 import "../styles/cart-page.css";
@@ -11,6 +10,7 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
+
   return (
     <Helmet title="Cart">
       <CommonSection title="Your Cart" />
@@ -62,13 +62,14 @@ const Cart = () => {
   );
 };
 
-const Tr = (props) => {
+const Tr = memo((props) => {
   const { id, image01, title, price, quantity } = props.item;
   const dispatch = useDispatch();
 
   const deleteItem = () => {
     dispatch(cartActions.deleteItem(id));
   };
+
   return (
     <tr>
       <td className="text-center cart__img-box">
@@ -82,6 +83,6 @@ const Tr = (props) => {
       </td>
     </tr>
   );
-};
+});
 
 export default Cart;
