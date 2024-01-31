@@ -1,48 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/common-section/CommonSection";
+
 import { Container, Row, Col } from "reactstrap";
+
 import products from "../assets/fake-data/products";
 import ProductCard from "../components/UI/product-card/ProductCard";
 import ReactPaginate from "react-paginate";
+
 import "../styles/all-foods.css";
 import "../styles/pagination.css";
 
 const AllFoods = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortingOption, setSortingOption] = useState("default");
-  const [pageNumber, setPageNumber] = useState(0);
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
-
-  const debounce = (func, delay) => {
-    let timer;
-    return function () {
-      const context = this;
-      const args = arguments;
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(context, args);
-      }, delay);
-    };
-  };
-
-  useEffect(() => {
-    const debouncedSearch = debounce(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 800);
-
-    debouncedSearch();
-
-    return () => {
-      clearTimeout(debouncedSearch);
-    };
-  }, [searchTerm]);
+  const [pageNumber, setPageNumber] = useState(0); 
 
   const searchedProduct = products.filter((item) => {
-    if (debouncedSearchTerm === "") {
+    if (searchTerm === "") {
       return true;
     }
-    if (item.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())) {
+    if (item.title.toLowerCase().includes(searchTerm.toLowerCase())) {
       return true;
     } else {
       return false;
@@ -88,6 +66,7 @@ const AllFoods = () => {
   return (
     <Helmet title="All-Foods">
       <CommonSection title="All Foods" />
+
       <section>
         <Container>
           <Row>
